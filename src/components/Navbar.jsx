@@ -1,6 +1,9 @@
+import { useContext } from "react"
 import Logo from "../assets/react.svg"
+import TodoContext from "../TodoContext"
  
-const Navbar = ({changetheme}) => {
+const Navbar = () => {
+    const {changetheme} = useContext(TodoContext)
     return (
         <nav className=" bg-red-950 shadow-xl shadow-black/15 py-2 px-8 flex items-center justify-between" >
        <div className="flex space-x-2 items-center">

@@ -1,4 +1,10 @@
-const ListItem = ({todo,removetodo,editTodo}) => {
+import { useContext } from "react"
+import TodoContext from "./TodoContext"
+
+const ListItem = ({todo}) => {
+
+    const {removetodo,editTodo} = useContext(TodoContext)
+
     return(
         <li className=" relative border border-red-900 rounded-lg shadow-lg my-2 p-4 ">
         <p className="text-red-900"> #{todo.id} </p>
