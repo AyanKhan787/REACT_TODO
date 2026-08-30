@@ -1,6 +1,6 @@
 import ListItem from "./ListItem"
 
-const ListGroup = ({todos , clearAll, removetodo} ) => {
+const ListGroup = ({todos , clearAll, removetodo, editTodo}) => {
     return(
       <> 
          <button onClick={clearAll} className="bg-red-500 hover:bg-red-300 cursor-pointer w-full p-2 rounded-md my-2 text-white font-bold">ClearAll</button>
@@ -8,7 +8,7 @@ const ListGroup = ({todos , clearAll, removetodo} ) => {
          <ul className="my-4">
       {
         todos.map(todo => {
-            return<ListItem key={todo.id} todo={todo} removetodo={removetodo} />
+            return<ListItem key={todo.id} todo={todo} removetodo={removetodo} editTodo={editTodo}/>
         })
       }
     </ul>

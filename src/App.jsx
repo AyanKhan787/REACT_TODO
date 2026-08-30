@@ -11,24 +11,7 @@ const App = () => {
     setdark(!dark)
   }
 
-  const [todos, settodos] = useState([
-    {
-      id: 1,
-      text: "Wake Up",
-    },
-     {
-      id: 2,
-      text: "Eat",
-    },
-     {
-      id: 3,
-      text: "Sleep",
-    },
-    {
-      id: 4,
-      text: "Play Games"
-    }
-  ])
+  const [todos, settodos] = useState([])
   
   const clearAll = () => {
    settodos([])
@@ -42,12 +25,45 @@ const App = () => {
     settodos([newtodo, ...todos])
    }
 
+   const [edit , setEdit] = useState({
+    todo : {},
+    isEdit : false
+   })
+
+   const editTodo = (todo) => {
+    setEdit({
+      todo: todo,
+      isEdit: true
+    })
+   }
+
+ const updateTodo = (updatedTodo) => {
+  settodos(todos.map(todo => {
+    if(todo.id === updatedTodo.id ) {
+      return(updatedTodo)
+    }
+    else{
+      return(todo)
+    }
+  }))
+  
+  setEdit({
+    todo:{},
+    isEdit: false
+  })
+
+ }
+
+
+
+
+
   return (
  <>
  <Navbar changetheme={changetheme}/>
 <div className={dark ? "bg-gray-800 text-white" : "p-8" }>
-  <Form addtodo={addtodo}/>
-   <ListGroup todos={todos}  clearAll={clearAll} removetodo={removetodo} />
+  <Form addtodo={addtodo} edit={edit} updateTodo={updateTodo}/>
+   <ListGroup todos={todos}  clearAll={clearAll} removetodo={removetodo} editTodo={editTodo} />
 </div>
 
   </>

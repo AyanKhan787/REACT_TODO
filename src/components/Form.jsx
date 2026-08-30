@@ -1,15 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const Form = ({addtodo}) => {
+const Form = ({addtodo,edit,updateTodo}) => {
  
     const [text, setText] = useState("")
     
   const handlesubmit = (e) => {
     e.preventDefault() 
-    addtodo({id: crypto.randomUUID() , text: text})
+    !edit.isEdit ?
+    addtodo({id: crypto.randomUUID() , text: text}) :
+    updateTodo({id: edit.todo.id , text: text})
 
   setText("")
   } 
+
+  useEffect(() => {
+    setText(edit.todo.text)
+    
+  }, [edit])
 
 
 
